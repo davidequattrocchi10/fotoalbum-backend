@@ -1,10 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Models\Photo;
 use App\Http\Requests\StorePhotoRequest;
 use App\Http\Requests\UpdatePhotoRequest;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Str;
 
 class PhotoController extends Controller
 {
@@ -13,7 +15,9 @@ class PhotoController extends Controller
      */
     public function index()
     {
-        //
+        // dd(Photo::orderByDesc('id')->get());
+
+        return view('admin.photos.index', ['photos' => Photo::orderByDesc('id')->paginate()]);
     }
 
     /**
@@ -21,7 +25,7 @@ class PhotoController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.photos.create');
     }
 
     /**
@@ -29,7 +33,12 @@ class PhotoController extends Controller
      */
     public function store(StorePhotoRequest $request)
     {
-        //
+        $val_data = $request->validated();
+        // dd($val_data);
+        $val_data['slug'] = Str::slug($request->title, '-');
+
+        Photo::create($val_data);
+        return to_route('admin.photos.index');
     }
 
     /**
@@ -37,7 +46,7 @@ class PhotoController extends Controller
      */
     public function show(Photo $photo)
     {
-        //
+        return view('admin.photos.show', compact('photo'));
     }
 
     /**
@@ -45,7 +54,7 @@ class PhotoController extends Controller
      */
     public function edit(Photo $photo)
     {
-        //
+        return view('admin.photos.edit', compact('photo'));
     }
 
     /**
