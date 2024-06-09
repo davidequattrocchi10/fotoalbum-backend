@@ -9,7 +9,7 @@
         <h1>
             {{$photo->title}}
         </h1>
-        <a class="btn btn-primary" href="{{route('admin.photos.index')}}">Back</a>
+        <a class="btn btn-primary" href="{{route('admin.photos.index')}}"> <i class="fas fa-arrow-left fa-sm fa-fw"></i>Back</a>
     </div>
 </header>
 

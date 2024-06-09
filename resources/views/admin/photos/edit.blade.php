@@ -26,6 +26,11 @@
             <label for="" class="form-label">Title</label>
             <input type="text" class="form-control" name="title" id="title" aria-describedby="helpTitle" placeholder="Nature with Nature" value="{{old('title', $photo->title)}}" />
             <small id="helpTitle" class="form-text text-muted">Add title to photo</small>
+            @error('title')
+            <div class="text-danger">
+                {{$message}}
+            </div>
+            @enderror
         </div>
 
         <div class="d-flex gap-3 my-4 mx-1">
@@ -39,16 +44,26 @@
                 <input type="file" class="form-control" name="image" id="image" placeholder="image" aria-describedby="imageHelper" />
                 <div id="imageHelper" class="form-text">Upload Image</div>
             </div>
+            @error('image')
+            <div class="text-danger">
+                {{$message}}
+            </div>
+            @enderror
         </div>
 
         <div class="mb-3">
             <label for="description" class="form-label">Description</label>
             <textarea class="form-control" name="description" id="description" rows="5">{{old('description', $photo->description)}}</textarea>
+            @error('description')
+            <div class="text-danger">
+                {{$message}}
+            </div>
+            @enderror
         </div>
 
 
         <button type="submit" class="btn btn-primary">
-            Update
+            <i class="fas fa-arrow-left fa-sm fa-fw"></i> Update
         </button>
 
 

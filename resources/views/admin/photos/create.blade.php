@@ -23,25 +23,40 @@
 
         <div class="mb-3">
             <label for="title" class="form-label">Title</label>
-            <input type="text" class="form-control" name="title" id="title" aria-describedby="helpTitle" placeholder="Nature with Nature" />
+            <input type="text" class="form-control" name="title" id="title" aria-describedby="helpTitle" placeholder="Nature with Nature" value="{{old('title')}}" />
             <small id="helpTitle" class="form-text text-muted">Add title to photo</small>
+            @error('title')
+            <div class="text-danger">
+                {{$message}}
+            </div>
+            @enderror
         </div>
 
         <div class="mb-3">
             <label for="image" class="form-label">Image</label>
             <input type="file" class="form-control" name="image" id="image" placeholder="image" aria-describedby="imageHelper" />
             <div id="imageHelper" class="form-text">Upload Image</div>
+            @error('image')
+            <div class="text-danger">
+                {{$message}}
+            </div>
+            @enderror
         </div>
 
 
         <div class="mb-3">
             <label for="description" class="form-label">Description</label>
-            <textarea class="form-control" name="description" id="description" rows="5"></textarea>
+            <textarea class="form-control" name="description" id="description" rows="5">{{old('description')}}</textarea>
+            @error('description')
+            <div class="text-danger">
+                {{$message}}
+            </div>
+            @enderror
         </div>
 
 
         <button type="submit" class="btn btn-primary">
-            Create
+            <i class="fas fa-arrow-left fa-sm fa-fw"></i> Create
         </button>
 
 
