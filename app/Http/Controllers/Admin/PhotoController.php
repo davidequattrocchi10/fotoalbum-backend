@@ -7,6 +7,7 @@ use App\Http\Requests\StorePhotoRequest;
 use App\Http\Requests\UpdatePhotoRequest;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Models\Tag;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
@@ -27,7 +28,9 @@ class PhotoController extends Controller
      */
     public function create()
     {
-        return view('admin.photos.create', ['categories' => Category::orderBy('id')->get()]);
+        $categories = Category::orderBy('id')->get();
+        $tags = Tag::all();
+        return view('admin.photos.create', compact('categories', 'tags'));
     }
 
     /**
@@ -48,7 +51,13 @@ class PhotoController extends Controller
         // dd($val_data);
 
         //create
-        Photo::create($val_data);
+        $photo = Photo::create($val_data);
+
+        //execute attach if tags exist
+        if ($request->has('tags')) {
+            $photo->tags()->attach($val_data['tags']);
+        }
+
 
         //redirect
         return to_route('admin.photos.index')->with('message', 'Photo Created Successfully');
@@ -68,7 +77,8 @@ class PhotoController extends Controller
     public function edit(Photo $photo)
     {
         $categories = Category::orderBy('id')->get();
-        return view('admin.photos.edit', compact('photo', 'categories'));
+        $tags = Tag::all();
+        return view('admin.photos.edit', compact('photo', 'categories', 'tags'));
     }
 
     /**
@@ -97,6 +107,11 @@ class PhotoController extends Controller
 
         //update
         $photo->update($val_data);
+
+        //execute sync if tags exist
+        if ($request->has('tags')) {
+            $photo->tags()->sync($val_data['tags']);
+        }
 
         //redirect
         return to_route('admin.photos.index')->with('message', 'Photo Updated Successfully');

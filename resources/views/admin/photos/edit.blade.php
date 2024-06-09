@@ -47,6 +47,23 @@
         </div>
 
 
+        <div class="mb-3 d-flex gap-3 flex-wrap">
+            @foreach($tags as $tag)
+            <div class="form-check">
+
+                @if($errors->any())
+                <input class="form-check-input" type="checkbox" value="{{$tag->id}}" id="tag-{{$tag->id}}" name="tags[]" {{in_array($tag->id, old('tags', [])) ? 'checked' : ''}} />
+
+                @else
+                <input class="form-check-input" type="checkbox" value="{{$tag->id}}" id="tag-{{$tag->id}}" name="tags[]" {{$photo->tags->contains($tag->id) ? 'checked' : ''}} />
+
+                @endif
+                <label class="form-check-label" for="tag-{{$tag->id}}"> {{$tag->name}} </label>
+            </div>
+            @endforeach
+        </div>
+
+
 
         <div class="d-flex gap-3 my-4 mx-1">
             @if (Str::startsWith($photo->image, 'https://'))

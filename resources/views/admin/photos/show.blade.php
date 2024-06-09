@@ -40,6 +40,16 @@
                 <br>
                 {{$photo->category ? $photo->category->name : 'Uncategorized'}}
 
+                <div class="tags">
+                    <strong>Tags:</strong>
+                    @forelse ($photo->tags as $tag)
+                    <span class="badge bg-primary">{{$tag->name}}</span>
+                    @empty
+                    <span>N/A</span>
+                    @endforelse
+
+                </div>
+
 
 
             </div>
