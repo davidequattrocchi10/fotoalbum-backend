@@ -35,6 +35,14 @@
                 <br>
                 {{$photo->slug}}
             </p>
+            <div class="metadata">
+                <strong>Category</strong>
+                <br>
+                {{$photo->category ? $photo->category->name : 'Uncategorized'}}
+
+
+
+            </div>
             <div>{{$photo->in_evidence}}</div>
             <div>{{$photo->is_published}}</div>
         </div>

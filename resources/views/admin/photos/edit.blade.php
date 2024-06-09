@@ -33,6 +33,21 @@
             @enderror
         </div>
 
+
+        <div class="mb-3">
+            <label for="category_id" class="form-label">Category</label>
+            <select class="form-select" name="category_id" id="category_id">
+                <option selected disabled>Select one</option>
+                @foreach($categories as $category)
+                <option value="{{$category->id}}" {{ $category->id == old('category_id', $photo->category->id) ? 'selected' : '' }}>
+                    {{$category->name}}
+                </option>
+                @endforeach
+            </select>
+        </div>
+
+
+
         <div class="d-flex gap-3 my-4 mx-1">
             @if (Str::startsWith($photo->image, 'https://'))
             <img width="170" height="170" src="{{$photo->image}}" alt="Image">

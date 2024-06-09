@@ -40,8 +40,11 @@ class PhotoController extends Controller
 
         $val_data['slug'] = Str::slug($request->title, '-');
 
-        $image_path = Storage::put('uploads', $request->image);
-        $val_data['image'] = $image_path;
+        if ($request->has('image')) {
+            $image_path = Storage::put('uploads', $request->image);
+            $val_data['image'] = $image_path;
+        }
+
         // dd($val_data);
 
         //create
@@ -64,7 +67,8 @@ class PhotoController extends Controller
      */
     public function edit(Photo $photo)
     {
-        return view('admin.photos.edit', compact('photo'));
+        $categories = Category::orderBy('id')->get();
+        return view('admin.photos.edit', compact('photo', 'categories'));
     }
 
     /**

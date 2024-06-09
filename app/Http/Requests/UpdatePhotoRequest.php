@@ -23,6 +23,7 @@ class UpdatePhotoRequest extends FormRequest
     {
         return [
             'title' => 'required',
+            'category_id' => 'nullable|exists:categories,id',
             'description' => 'nullable',
             'image' => 'nullable|image|max:1300',
             'in_evidence' => 'nullable',
