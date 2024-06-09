@@ -33,6 +33,17 @@
         </div>
 
         <div class="mb-3">
+            <label for="category_id" class="form-label">Category</label>
+            <select class="form-select" name="category_id" id="category_id">
+                <option selected disabled>Select one</option>
+                @foreach($categories as $category)
+                <option value="{{$category->id}}" {{ $category->id == old('category_id') ? 'selected' : '' }}> {{$category->name}}</option>
+                @endforeach
+            </select>
+        </div>
+
+
+        <div class="mb-3">
             <label for="image" class="form-label">Image</label>
             <input type="file" class="form-control" name="image" id="image" placeholder="image" aria-describedby="imageHelper" />
             <div id="imageHelper" class="form-text">Upload Image</div>

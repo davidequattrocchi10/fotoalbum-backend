@@ -6,6 +6,7 @@ use App\Models\Photo;
 use App\Http\Requests\StorePhotoRequest;
 use App\Http\Requests\UpdatePhotoRequest;
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
@@ -26,7 +27,7 @@ class PhotoController extends Controller
      */
     public function create()
     {
-        return view('admin.photos.create');
+        return view('admin.photos.create', ['categories' => Category::orderBy('id')->get()]);
     }
 
     /**
