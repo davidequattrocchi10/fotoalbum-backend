@@ -15,6 +15,8 @@
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
+    <script src="https://kit.fontawesome.com/5e033dde00.js" crossorigin="anonymous"></script>
+
     <!-- Usando Vite -->
     @vite(['resources/js/app.js'])
 </head>

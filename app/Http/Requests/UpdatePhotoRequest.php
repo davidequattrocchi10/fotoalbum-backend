@@ -11,7 +11,7 @@ class UpdatePhotoRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return TRUE;
     }
 
     /**
@@ -22,7 +22,11 @@ class UpdatePhotoRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'title' => 'required',
+            'description' => 'nullable',
+            'image' => 'nullable|image|max:1300',
+            'in_evidence' => 'nullable',
+            'is_published' => 'nullable',
         ];
     }
 }

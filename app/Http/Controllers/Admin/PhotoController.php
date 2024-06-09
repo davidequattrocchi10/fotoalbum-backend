@@ -6,6 +6,7 @@ use App\Models\Photo;
 use App\Http\Requests\StorePhotoRequest;
 use App\Http\Requests\UpdatePhotoRequest;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class PhotoController extends Controller
@@ -33,12 +34,20 @@ class PhotoController extends Controller
      */
     public function store(StorePhotoRequest $request)
     {
+        //validate
         $val_data = $request->validated();
-        // dd($val_data);
+
         $val_data['slug'] = Str::slug($request->title, '-');
 
+        $image_path = Storage::put('uploads', $request->image);
+        $val_data['image'] = $image_path;
+        // dd($val_data);
+
+        //create
         Photo::create($val_data);
-        return to_route('admin.photos.index');
+
+        //redirect
+        return to_route('admin.photos.index')->with('message', 'Photo Created Successfully');
     }
 
     /**
@@ -62,7 +71,30 @@ class PhotoController extends Controller
      */
     public function update(UpdatePhotoRequest $request, Photo $photo)
     {
-        //
+        //validate
+        $val_data = $request->validated();
+        // dd($val_data);
+        $val_data['slug'] = Str::slug($request->title, '-');
+
+
+        // check if request has a image
+        if ($request->has('image')) {
+            // check if the current photo has a image
+            if ($photo->image) {
+                // delete old image
+                Storage::delete($photo->image);
+            }
+            //upload new image
+            $image_path = Storage::put('uploads', $request->image);
+            //add new image in val_data
+            $val_data['image'] = $image_path;
+        }
+
+        //update
+        $photo->update($val_data);
+
+        //redirect
+        return to_route('admin.photos.index')->with('message', 'Photo Updated Successfully');
     }
 
     /**
@@ -70,6 +102,15 @@ class PhotoController extends Controller
      */
     public function destroy(Photo $photo)
     {
-        //
+        if ($photo->image) {
+            // delete old image
+            Storage::delete($photo->image);
+        }
+
+        //delete
+        $photo->delete();
+
+        //redirect
+        return to_route('admin.photos.index')->with('message', 'Photo Deleted Successfully');
     }
 }

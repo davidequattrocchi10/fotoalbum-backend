@@ -24,6 +24,7 @@ class StorePhotoRequest extends FormRequest
         return [
             'title' => 'required',
             'description' => 'nullable',
+            'image' => 'nullable|image|max:1300',
             'in_evidence' => 'nullable',
             'is_published' => 'nullable',
         ];
