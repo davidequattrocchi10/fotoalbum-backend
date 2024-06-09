@@ -18,7 +18,7 @@ class PhotoController extends Controller
     {
         // dd(Photo::orderByDesc('id')->get());
 
-        return view('admin.photos.index', ['photos' => Photo::orderByDesc('id')->paginate()]);
+        return view('admin.photos.index', ['photos' => Photo::orderByDesc('id')->paginate(5)]);
     }
 
     /**

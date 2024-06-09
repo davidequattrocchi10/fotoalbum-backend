@@ -69,7 +69,7 @@
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
-                                        You are about to destroy this photo
+                                        You are about to destroy this photo! Are you sure?
                                         <strong>{{$photo->title}}</strong>
                                     </div>
                                     <div class="modal-footer">
@@ -105,6 +105,7 @@
             </tbody>
         </table>
     </div>
+    {{$photos->links('vendor.pagination.bootstrap-5')}};
 </div>
 
 

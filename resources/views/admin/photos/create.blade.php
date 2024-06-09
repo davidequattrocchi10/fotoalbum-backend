@@ -6,7 +6,7 @@
 <header class="bg-dark text-white py-4 ">
     <div class="container d-flex justify-content-between align-items-center">
         <h1>
-            Create Photo
+            Add Photo
         </h1>
         <a class="btn btn-secondary" href="{{route('admin.photos.index')}}">Cancel</a>
     </div>
