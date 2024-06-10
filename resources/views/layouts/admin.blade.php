@@ -49,7 +49,19 @@
                             <a class="nav-link" href="{{url('/') }}">{{ __('Home') }}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{route('admin.photos.index') }}">{{ __('Photos') }}</a>
+                            <a class="nav-link" href="{{route('admin.photos.index') }}">
+                                <i class="fas fa-thumbtack"></i> {{ __('Photos') }}
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{route('admin.categories.index') }}">
+                                <i class="fas fa-folder"></i> {{ __('Categories') }}
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{route('admin.tags.index') }}">
+                                <i class="fas fa-folder"></i> {{ __('Tags') }}
+                            </a>
                         </li>
                     </ul>
 

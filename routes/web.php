@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\PhotoController;
+use App\Http\Controllers\Admin\TagController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -29,6 +31,12 @@ Route::middleware(['auth', 'verified'])
 
         // Photos route here
         Route::resource('photos', PhotoController::class)->parameters(['photos' => 'photo:slug']);
+
+        // Categories route here
+        Route::resource('categories', CategoryController::class);
+
+        // Tags route here
+        Route::resource('tags', TagController::class);
     });
 
 

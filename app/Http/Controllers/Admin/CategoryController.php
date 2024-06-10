@@ -1,10 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Models\Category;
 use App\Http\Requests\StoreCategoryRequest;
 use App\Http\Requests\UpdateCategoryRequest;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Str;
 
 class CategoryController extends Controller
 {
@@ -13,7 +15,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.categories.index', ['categories' => Category::paginate(10)]);
     }
 
     /**
@@ -21,7 +23,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.categories.create');
     }
 
     /**
@@ -29,7 +31,19 @@ class CategoryController extends Controller
      */
     public function store(StoreCategoryRequest $request)
     {
-        //
+        //validate
+        $val_data = $request->validated();
+
+        $val_data['slug'] = Str::slug($request->name, '-');
+
+        // dd($val_data);
+
+        //create
+        Category::create($val_data);
+
+
+        //redirect
+        return to_route('admin.categories.index')->with('message', 'Tag Created Successfully');
     }
 
     /**
@@ -37,7 +51,7 @@ class CategoryController extends Controller
      */
     public function show(Category $category)
     {
-        //
+        return view('admin.categories.show', compact('category'));
     }
 
     /**

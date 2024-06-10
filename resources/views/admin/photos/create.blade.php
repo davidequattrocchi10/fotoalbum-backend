@@ -77,7 +77,7 @@
 
 
         <button type="submit" class="btn btn-primary">
-            <i class="fas fa-arrow-left fa-sm fa-fw"></i> Create
+            <i class="fas fa-plus-circle"></i> Create
         </button>
 
 

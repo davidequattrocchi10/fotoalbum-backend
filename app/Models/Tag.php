@@ -10,6 +10,8 @@ class Tag extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['name', 'slug', 'count'];
+
     public function photos(): BelongsToMany
     {
         return $this->belongsToMany(Photo::class);
