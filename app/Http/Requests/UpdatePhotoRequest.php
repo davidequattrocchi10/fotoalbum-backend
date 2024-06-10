@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class UpdatePhotoRequest extends FormRequest
 {
@@ -11,7 +12,7 @@ class UpdatePhotoRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return TRUE;
+        return true;
     }
 
     /**
@@ -22,7 +23,7 @@ class UpdatePhotoRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title' => 'required',
+            'title' => ['required', Rule::unique('photos')->ignore($this->photo)],
             'category_id' => 'nullable|exists:categories,id',
             'tags' => 'exists:tags,id',
             'description' => 'nullable',

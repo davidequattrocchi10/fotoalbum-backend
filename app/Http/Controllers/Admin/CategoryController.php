@@ -43,7 +43,7 @@ class CategoryController extends Controller
 
 
         //redirect
-        return to_route('admin.categories.index')->with('message', 'Tag Created Successfully');
+        return to_route('admin.categories.index')->with('message', 'Category Created Successfully');
     }
 
     /**
@@ -59,7 +59,7 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        //
+        return view('admin.categories.edit', compact('category'));
     }
 
     /**
@@ -67,7 +67,15 @@ class CategoryController extends Controller
      */
     public function update(UpdateCategoryRequest $request, Category $category)
     {
-        //
+        //validate
+        $val_data = $request->validated();
+        $val_data['slug'] = Str::slug($request->name, '-');
+
+        //update
+        $category->update($val_data);
+
+        //redirect
+        return to_route('admin.categories.index')->with('message', 'Category Updated Successfully');
     }
 
     /**
@@ -75,6 +83,10 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        //
+        //delete category
+        $category->delete();
+
+        //redirect
+        return to_route('admin.categories.index')->with('message', 'Category Deleted Successfully');
     }
 }

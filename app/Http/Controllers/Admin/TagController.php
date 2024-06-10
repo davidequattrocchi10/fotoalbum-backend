@@ -50,7 +50,7 @@ class TagController extends Controller
 
         // dd($val_data);
 
-        //create
+        //update
         $tag->update($val_data);
 
 
