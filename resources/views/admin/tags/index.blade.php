@@ -41,7 +41,7 @@
                         <tr>
                             <th scope="col">ID</th>
                             <th scope="col">Name</th>
-                            <th scope="col">Count</th>
+                            <th scope="col">Total Photos</th>
                             <th scope="col">Actions</th>
                         </tr>
                     </thead>
@@ -59,7 +59,11 @@
 
                                 </form>
                             </td>
-                            <td>{{$tag->count}}</td>
+                            <td>
+                                <span class="badge bg-primary">
+                                    {{$tag->photos->count()}}
+                                </span>
+                            </td>
                             <td>
                                 <!-- Modal trigger button -->
                                 <button type="button" class="btn btn-danger btn-sm mt-1" data-bs-toggle="modal" data-bs-target="#modalId-{{$tag->id}}">

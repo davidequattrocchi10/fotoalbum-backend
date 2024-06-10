@@ -76,7 +76,7 @@ class PhotoController extends Controller
      */
     public function edit(Photo $photo)
     {
-        $categories = Category::orderBy('id')->get();
+        $categories = Category::all();
         $tags = Tag::all();
         return view('admin.photos.edit', compact('photo', 'categories', 'tags'));
     }

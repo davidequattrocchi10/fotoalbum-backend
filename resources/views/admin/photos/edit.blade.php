@@ -39,8 +39,8 @@
             <select class="form-select" name="category_id" id="category_id">
                 <option selected disabled>Select one</option>
                 @foreach($categories as $category)
-                <option value="{{$category->id}}" {{ $category->id == old('category_id', $photo->category->id) ? 'selected' : '' }}>
-                    {{$category->name}}
+                <option value="{{$category->id}}" {{ (isset($photo->category) && $category->id == old('category_id', (isset($photo->category) ? $photo->category->id : null))) ? 'selected' : '' }}>
+                    {{ $category->name }}
                 </option>
                 @endforeach
             </select>
