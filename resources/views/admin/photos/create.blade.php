@@ -64,6 +64,23 @@
         </div>
 
 
+        <div class="my-3">
+            <div class="mb-3">
+                <div class="form-check">
+                    <label class="form-check-label" for="in_evidence">Put in evidence </label>
+                    <input class="form-check-input" type="checkbox" value="1" id="in_evidence" name="in_evidence" {{ old('in_evidence') == 1 ? 'checked' : '' }} />
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <div class="form-check">
+                    <label class="form-check-label" for="is_published"> To publish </label>
+                    <input class="form-check-input" type="checkbox" value="1" id="is_published" name="is_published" {{ old('is_published') == 1 ? 'checked' : '' }} />
+                </div>
+            </div>
+        </div>
+
+
 
         <div class="mb-3">
             <label for="description" class="form-label">Description</label>

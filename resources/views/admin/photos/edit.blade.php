@@ -83,6 +83,33 @@
             @enderror
         </div>
 
+
+        <div class="my-3">
+            <div class="mb-3">
+                <div class="form-check">
+                    @if($errors->any())
+                    <input class="form-check-input" type="checkbox" value="1" id="in_evidence" name="in_evidence" {{ old('in_evidence') == 1 ? 'checked' : '' }} />
+                    @else
+                    <input class="form-check-input" type="checkbox" value="1" id="in_evidence" name="in_evidence" {{ $photo->in_evidence ? 'checked' : ''  }} />
+                    @endif
+                    <label class="form-check-label" for="in_evidence">Put in evidence </label>
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <div class="form-check">
+                    @if($errors->any())
+                    <input class="form-check-input" type="checkbox" value="1" id="is_published" name="is_published" {{ old('is_published') == 1 ? 'checked' : '' }} />
+                    @else
+                    <input class="form-check-input" type="checkbox" value="1" id="is_published" name="is_published" {{ $photo->is_published ? 'checked' : ''  }} />
+                    @endif
+                    <label class="form-check-label" for="is_published">To publish </label>
+                </div>
+            </div>
+        </div>
+
+
+
         <div class="mb-3">
             <label for="description" class="form-label">Description</label>
             <textarea class="form-control" name="description" id="description" rows="5">{{old('description', $photo->description)}}</textarea>

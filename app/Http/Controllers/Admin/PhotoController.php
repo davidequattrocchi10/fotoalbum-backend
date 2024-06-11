@@ -42,6 +42,8 @@ class PhotoController extends Controller
         $val_data = $request->validated();
 
         $val_data['slug'] = Str::slug($request->title, '-');
+        $val_data['is_published'] = $request->has('is_published');
+        $val_data['in_evidence'] = $request->has('in_evidence');
 
         if ($request->has('image')) {
             $image_path = Storage::put('uploads', $request->image);
@@ -87,9 +89,12 @@ class PhotoController extends Controller
     public function update(UpdatePhotoRequest $request, Photo $photo)
     {
         //validate
+
         $val_data = $request->validated();
-        // dd($val_data);
+
         $val_data['slug'] = Str::slug($request->title, '-');
+        $val_data['is_published'] = $request->has('is_published');
+        $val_data['in_evidence'] = $request->has('in_evidence');
 
 
         // check if request has a image
@@ -104,6 +109,8 @@ class PhotoController extends Controller
             //add new image in val_data
             $val_data['image'] = $image_path;
         }
+
+        // dd($val_data);
 
         //update
         $photo->update($val_data);

@@ -43,8 +43,8 @@
                         @endif
                     </td>
                     <td>{{$photo->title}}</td>
-                    <td>{{$photo->in_evidence}}</td>
-                    <td>{{$photo->is_published}}</td>
+                    <td>{{$photo->in_evidence ? 'True' : 'False'}}</td>
+                    <td>{{ $photo->is_published ? 'True' : 'False' }}</td>
                     <td>
                         <a class="btn btn-sm btn-primary mt-1" href="{{route('admin.photos.show', $photo)}}">
                             <i class="fas fa-eye fa-xs fa-fw"></i> View

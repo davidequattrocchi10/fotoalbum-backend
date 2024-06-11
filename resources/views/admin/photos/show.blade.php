@@ -35,13 +35,14 @@
                 <br>
                 {{$photo->slug}}
             </p>
-            <div class="metadata">
+            <div class="metadata mb-2">
                 <strong>Category</strong>
                 <br>
                 {{$photo->category ? $photo->category->name : 'Uncategorized'}}
 
-                <div class="tags">
+                <div class="tags my-2">
                     <strong>Tags:</strong>
+                    <br>
                     @forelse ($photo->tags as $tag)
                     <span class="badge bg-primary">{{$tag->name}}</span>
                     @empty
@@ -50,11 +51,17 @@
 
                 </div>
 
-
-
             </div>
-            <div>{{$photo->in_evidence}}</div>
-            <div>{{$photo->is_published}}</div>
+            <p>
+                <strong> In evidence </strong>
+                <br>
+                {{$photo->in_evidence ? 'True' : 'False'}}
+            </p>
+            <p>
+                <strong> Published </strong>
+                <br>
+                {{ $photo->is_published ? 'True' : 'False' }}
+            </p>
         </div>
 
     </div>
