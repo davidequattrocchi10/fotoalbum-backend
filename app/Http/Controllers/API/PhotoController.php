@@ -13,7 +13,7 @@ class PhotoController extends Controller
         if ($request->has('search')) {
             return response()->json([
                 'success' => true,
-                'results' => Photo::with(['category', 'tags'])->orderByDesc('id')->where('title', 'LIKE', '%' . $request->search . '%')->paginate()
+                'results' => Photo::with(['category', 'tags'])->orderByDesc('id')->where('title', 'LIKE', '%' . $request->search . '%')->paginate(3)
             ]);
         }
 

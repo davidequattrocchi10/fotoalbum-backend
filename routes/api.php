@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\API\LeadController;
 use App\Http\Controllers\API\PhotoController;
 use App\Models\Photo;
 use Illuminate\Http\Request;
@@ -23,3 +24,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::get('photos', [PhotoController::class, 'index']);
 
 Route::get('photos/{photo}', [PhotoController::class, 'show']);
+
+Route::post('contacts', [LeadController::class, 'store']);
