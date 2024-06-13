@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\PhotoController;
 use App\Http\Controllers\Admin\TagController;
+use App\Http\Controllers\LeadController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -22,6 +23,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('contacts', [LeadController::class, 'create'])->name('contacts');
+Route::post('contacts', [LeadController::class, 'store'])->name('contacts.store');
+
+
 Route::middleware(['auth', 'verified'])
     ->name('admin.')
     ->prefix('admin')
@@ -37,6 +42,12 @@ Route::middleware(['auth', 'verified'])
 
         // Tags route here
         Route::resource('tags', TagController::class);
+
+        Route::get('/mailable', function () {
+            $lead = App\Models\Lead::find(1);
+
+            return new App\Mail\NewLeadMarkdown($lead);
+        });
     });
 
 
