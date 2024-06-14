@@ -25,6 +25,8 @@ Route::get('photos', [PhotoController::class, 'index']);
 
 Route::get('photos/{photo}', [PhotoController::class, 'show']);
 
+Route::get('evidence', [PhotoController::class, 'main']);
+
 Route::post('contacts', [LeadController::class, 'store']);
 
 Route::get('categories', function () {

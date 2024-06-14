@@ -46,4 +46,12 @@ class PhotoController extends Controller
             ]);
         }
     }
+
+    public function main()
+    {
+        return response()->json([
+            'success' => true,
+            'results' => Photo::orderByDesc('id')->where('in_evidence', true)->get()
+        ]);
+    }
 }
