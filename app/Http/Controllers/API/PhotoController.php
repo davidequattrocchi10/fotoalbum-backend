@@ -10,18 +10,21 @@ class PhotoController extends Controller
 {
     public function index(Request $request)
     {
-        if ($request->has('search')) {
-            return response()->json([
-                'success' => true,
-                'results' => Photo::with(['category', 'tags'])->orderByDesc('id')->where('title', 'LIKE', '%' . $request->search . '%')->paginate(3)
-            ]);
+        $query = Photo::with(['category', 'tags'])->orderByDesc('id');
+
+        if ($request->has('category_id')) {
+            $query->where('category_id', $request->category_id);
         }
 
+        if ($request->has('search')) {
+            $query = $query->where('title', 'LIKE', '%' . $request->search . '%');
+        }
 
+        $results = $query->paginate(3);
 
         return response()->json([
             'success' => true,
-            'results' => Photo::with(['category', 'tags'])->orderByDesc('id')->paginate(3)
+            'results' => $results
         ]);
     }
 
