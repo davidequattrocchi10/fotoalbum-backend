@@ -3,21 +3,39 @@
 
 <div class="jumbotron p-2 bg-light rounded-3">
     <div class="container py-3">
-        <div class="row">
-            <div class="col-auto">
-                <div class="profile_image">
-                    <img class="img-fluid rounded-circle" width="200" src="https://avatars.githubusercontent.com/u/75373080?v=4" alt="">
-                </div>
+        <div class="d-flex justify-content-center align-items-center">
+            <div class="profile_image mx-5">
+                <img class="img-fluid rounded-circle" width="200" src="https://avatars.githubusercontent.com/u/75373080?v=4" alt="">
             </div>
-            <div class="col">
+            <div class="mx-5 text-center">
                 <h1 class="display-5 fw-bold">
                     Welcome to <em>Capture</em>
                 </h1>
-                <p class="col-md-8 fs-4">See my amazing Photos</p>
+                <p class="fs-4">See my amazing Photos</p>
             </div>
         </div>
     </div>
 </div>
+
+<div class="container-fluid my-2">
+    <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner" style="width: 100%; height:500px; margin:auto;">
+
+            @foreach ($photos as $index => $photo)
+            <div class="carousel-item {{ $index == 0 ? 'active' : '' }}" data-bs-interval="2000">
+                @if (Str::startsWith($photo->image, 'https://'))
+                <img class="d-block w-100" style="width: 200%; height:500px;" src="{{$photo->image}}" alt="Image">
+                @else
+                <img class="d-block w-100" style="width: 200%; height:500px;" src="{{asset('storage/' . $photo->image)}}" alt="Image">
+                @endif
+            </div>
+            @endforeach
+        </div>
+
+    </div>
+</div>
+
+
 
 </div>
 <div class="p-2 mb-4">
@@ -32,6 +50,30 @@
             Delve into thematic galleries, discover hidden gems through user-submitted content,
             and be inspired by the artistry of talented photographers.
         </p>
+    </div>
+</div>
+
+<div class="container-fluid bg-light">
+    <div class="container">
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4">
+            @foreach ($photos as $photo)
+            <div class="col mb-3" style="max-height: 400px;">
+                <div class="card" style="height: 100%;">
+                    @if (Str::startsWith($photo->image, 'https://'))
+                    <img class="card-img-top" style="height: 85%; width: 100%;" src="{{$photo->image}}" alt="Image">
+                    @else
+                    <img class="card-img-top" style="height: 85%; width: 100%;" src="{{asset('storage/' . $photo->image)}}" alt="Image">
+                    @endif
+
+                    <div class="card-body" style="height: 15%;">
+                        <h5>{{$photo->title}}</h5>
+                    </div>
+                </div>
+
+            </div>
+            @endforeach
+        </div>
+        {{$photos->links('vendor.pagination.bootstrap-5')}}
     </div>
 </div>
 

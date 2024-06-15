@@ -21,7 +21,8 @@ use App\Models\Photo;
 */
 
 Route::get('/', function () {
-    return view('welcome', Photo::paginate(5));
+    $photos = Photo::where('is_published', true)->paginate(9);
+    return view('welcome', compact('photos'));
 });
 
 
