@@ -50,6 +50,11 @@
                             </a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link" href="{{url('admin/drafts') }}">
+                                <i class="fas fa-folder"></i> {{ __('Drafts') }}
+                            </a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link" href="{{route('admin.categories.index') }}">
                                 <i class="fas fa-folder"></i> {{ __('Categories') }}
                             </a>

@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\TagController;
 use App\Http\Controllers\LeadController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Models\Photo;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,8 +21,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('welcome', Photo::paginate(5));
 });
+
+
 
 Route::get('contacts', [LeadController::class, 'create'])->name('contacts');
 Route::post('contacts', [LeadController::class, 'store'])->name('contacts.store');
@@ -31,6 +34,8 @@ Route::middleware(['auth', 'verified'])
     ->name('admin.')
     ->prefix('admin')
     ->group(function () {
+
+        Route::get('/drafts', [PhotoController::class, 'showDraft'])->name('drafts');
 
         Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 

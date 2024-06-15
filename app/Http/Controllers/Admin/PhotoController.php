@@ -140,4 +140,9 @@ class PhotoController extends Controller
         //redirect
         return to_route('admin.photos.index')->with('message', 'Photo Deleted Successfully');
     }
+
+    public function showDraft()
+    {
+        return view('admin.photos.drafts', ['photos' => Photo::orderByDesc('id')->where('is_published', false)->paginate(5)]);
+    }
 }
