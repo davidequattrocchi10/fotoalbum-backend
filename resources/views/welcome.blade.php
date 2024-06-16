@@ -1,13 +1,10 @@
 @extends('layouts.app')
 @section('content')
 
-<div class="jumbotron rounded-3 pb-5" style="background-image: url({{asset('storage/' . $photos_main[0]->image)}});">
+<div id="jumbotron" class="jumbotron rounded-3 pb-5" style="margin-top: -0.5rem;">
     <div class="overlay"></div>
     <div class="container-over container py-3">
         <div class="d-flex justify-content-center align-items-center">
-            <div class="profile_image mx-5">
-                <img class="img-fluid rounded-circle" width="200" src="https://avatars.githubusercontent.com/u/75373080?v=4" alt="">
-            </div>
             <div class="mx-5 text-center">
                 <h1 class="display-5 fw-bold">
                     Welcome to <em>Capture</em>
@@ -17,7 +14,7 @@
         </div>
         <div class="container-fluid my-2">
             <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
-                <div class="carousel-inner" style="width: 100%; height:500px; margin:auto;">
+                <div class="carousel-inner" style="width: 70%; height:500px; margin:auto;">
                     @foreach ($photos_main as $index => $photo)
                     <div class="carousel-item {{ $index == 0 ? 'active' : '' }}" data-bs-interval="3000">
                         @if (Str::startsWith($photo->image, 'https://'))
