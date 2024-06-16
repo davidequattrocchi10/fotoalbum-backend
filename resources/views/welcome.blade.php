@@ -20,9 +20,8 @@
 <div class="container-fluid my-2">
     <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-inner" style="width: 100%; height:500px; margin:auto;">
-
-            @foreach ($photos as $index => $photo)
-            <div class="carousel-item {{ $index == 0 ? 'active' : '' }}" data-bs-interval="2000">
+            @foreach ($photos_main as $index => $photo)
+            <div class="carousel-item {{ $index == 0 ? 'active' : '' }}" data-bs-interval="3000">
                 @if (Str::startsWith($photo->image, 'https://'))
                 <img class="d-block w-100" style="width: 200%; height:500px;" src="{{$photo->image}}" alt="Image">
                 @else

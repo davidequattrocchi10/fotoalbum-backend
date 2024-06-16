@@ -1,12 +1,15 @@
 <x-mail::message>
-# Introduction
+    # You received a new message from: {{$lead->name}}
+    His email is: {{$lead->address}}
 
-The body of your message.
+    # Message:
+    {{$lead->message}}
 
-<x-mail::button :url="''">
-Button Text
-</x-mail::button>
+    <x-mail::button :url="'http://127.0.0.1:8000/admin/photos'" color="success">
+        Go to admin
+    </x-mail::button>
 
-Thanks,<br>
-{{ config('app.name') }}
+
+    Thanks,
+    {{ config('app.name') }}
 </x-mail::message>

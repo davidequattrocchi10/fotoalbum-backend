@@ -102,7 +102,7 @@
             </tbody>
         </table>
     </div>
-    {{$photos->links('vendor.pagination.bootstrap-5')}};
+    {{$photos->links('vendor.pagination.bootstrap-5')}}
 </div>
 
 

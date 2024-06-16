@@ -22,7 +22,9 @@ use App\Models\Photo;
 
 Route::get('/', function () {
     $photos = Photo::where('is_published', true)->paginate(9);
-    return view('welcome', compact('photos'));
+    $photos_main = Photo::where('is_published', true)->where('in_evidence', true)->get();
+
+    return view('welcome', compact('photos', 'photos_main'));
 });
 
 

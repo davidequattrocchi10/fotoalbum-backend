@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Mail\NewLeadMarkdown;
+use App\Mail\NewLeadMessage;
 use App\Models\Lead;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
