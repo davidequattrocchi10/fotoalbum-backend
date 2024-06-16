@@ -1,8 +1,9 @@
 @extends('layouts.app')
 @section('content')
 
-<div class="jumbotron p-2 bg-light rounded-3">
-    <div class="container py-3">
+<div class="jumbotron rounded-3 pb-5" style="background-image: url({{asset('storage/' . $photos_main[0]->image)}});">
+    <div class="overlay"></div>
+    <div class="container-over container py-3">
         <div class="d-flex justify-content-center align-items-center">
             <div class="profile_image mx-5">
                 <img class="img-fluid rounded-circle" width="200" src="https://avatars.githubusercontent.com/u/75373080?v=4" alt="">
@@ -14,25 +15,28 @@
                 <p class="fs-4">See my amazing Photos</p>
             </div>
         </div>
-    </div>
-</div>
-
-<div class="container-fluid my-2">
-    <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
-        <div class="carousel-inner" style="width: 100%; height:500px; margin:auto;">
-            @foreach ($photos_main as $index => $photo)
-            <div class="carousel-item {{ $index == 0 ? 'active' : '' }}" data-bs-interval="3000">
-                @if (Str::startsWith($photo->image, 'https://'))
-                <img class="d-block w-100" style="width: 200%; height:500px;" src="{{$photo->image}}" alt="Image">
-                @else
-                <img class="d-block w-100" style="width: 200%; height:500px;" src="{{asset('storage/' . $photo->image)}}" alt="Image">
-                @endif
+        <div class="container-fluid my-2">
+            <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner" style="width: 100%; height:500px; margin:auto;">
+                    @foreach ($photos_main as $index => $photo)
+                    <div class="carousel-item {{ $index == 0 ? 'active' : '' }}" data-bs-interval="3000">
+                        @if (Str::startsWith($photo->image, 'https://'))
+                        <img class="d-block w-100" style="width: 200%; height:500px;" src="{{$photo->image}}" alt="Image">
+                        @else
+                        <img class="d-block w-100" style="width: 200%; height:500px;" src="{{asset('storage/' . $photo->image)}}" alt="Image">
+                        @endif
+                    </div>
+                    @endforeach
+                </div>
             </div>
-            @endforeach
         </div>
-
     </div>
+
+    <div class="jumbotron-overlay"></div>
 </div>
+
+
+
 
 
 
