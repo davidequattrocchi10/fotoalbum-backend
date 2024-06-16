@@ -10,7 +10,7 @@ class PhotoController extends Controller
 {
     public function index(Request $request)
     {
-        $query = Photo::with(['category', 'tags'])->orderByDesc('id');
+        $query = Photo::with(['category', 'tags'])->orderByDesc('id')->where('is_published', true);
 
         if ($request->has('category_id')) {
             $query->where('category_id', $request->category_id);
